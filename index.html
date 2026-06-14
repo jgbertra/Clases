@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light only">
+    <meta name="supported-color-schemes" content="light">
+    <meta name="darkreader-lock">
     <title>Predicción Ácido-Base - Clase Magistral</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +33,7 @@
         .content-area { display: flex; flex-direction: column; flex-grow: 1; justify-content: center; align-items: center; width: 100%; height: calc(100% - 60px); }
         .two-column { align-items: center; display: grid; gap: 40px; grid-template-columns: 1fr 1fr; width: 100%; height: 100%; }
         .image-wrapper { align-items: center; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; height: 80vh; width: 100%; justify-content: center; overflow: hidden; padding: 15px; }
-        .image-wrapper img { height: 100%; width: 100%; mix-blend-mode: multiply; object-fit: contain; }
+        .image-wrapper img { height: 100%; width: 100%; mix-blend-mode: normal; object-fit: contain; }
         .ph-highlight { background-color: #11caa0; border-radius: 8px; color: white; display: inline-block; font-weight: 700; padding: 4px 14px; white-space: nowrap; }
         blockquote { color: #005088; font-family: 'Merriweather', serif; font-size: 48px; font-weight: 700; line-height: 1.3; margin: 0 auto; max-width: 900px; position: relative; text-align: center; }
         blockquote::before { color: #11caa0; content: '“'; font-size: 150px; left: -80px; opacity: 0.2; position: absolute; top: -60px; }
@@ -62,6 +65,89 @@
         .slider-labels { position: relative; width: 100%; margin: 10px auto 0 auto; height: 30px; }
         .slider-labels span { position: absolute; font-weight: bold; color: #7f8c8d; font-size: 14px; transform: translateX(-50%); cursor: pointer; }
         .slider-labels span.active { color: #2980b9; font-size: 16px; }
+
+
+        /* --- BLOQUE ANTI-MODO OSCURO / ANTI-OSCURECIMIENTO AUTOMÁTICO ---
+           Este bloque fuerza una apariencia clara en navegadores y dispositivos
+           con dark mode activo, y evita que las imágenes se mezclen u oscurezcan. */
+        :root {
+            color-scheme: light only;
+            supported-color-schemes: light;
+        }
+
+        html,
+        body,
+        .presentation-container {
+            background-color: #f3f0df !important;
+            color: #111111;
+            forced-color-adjust: none;
+        }
+
+        body {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .slide-container:not([style*="background"]) {
+            background-color: #f3f0df !important;
+        }
+
+        .image-wrapper:not([style*="transparent"]) {
+            background-color: #ffffff !important;
+        }
+
+        .game-container {
+            background-color: #ffffff !important;
+            color: #111111 !important;
+        }
+
+        img,
+        canvas,
+        svg,
+        .image-wrapper img,
+        .ph-image,
+        #structure-overlay {
+            filter: none !important;
+            opacity: 1 !important;
+            mix-blend-mode: normal !important;
+            background-blend-mode: normal !important;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                color-scheme: light only;
+            }
+
+            html,
+            body,
+            .presentation-container {
+                background-color: #f3f0df !important;
+                color: #111111 !important;
+            }
+
+            .slide-container:not([style*="background"]) {
+                background-color: #f3f0df !important;
+            }
+
+            .image-wrapper:not([style*="transparent"]),
+            .game-container {
+                background-color: #ffffff !important;
+                color: #111111 !important;
+            }
+
+            img,
+            canvas,
+            svg,
+            .image-wrapper img,
+            .ph-image,
+            #structure-overlay {
+                filter: none !important;
+                opacity: 1 !important;
+                mix-blend-mode: normal !important;
+                background-blend-mode: normal !important;
+            }
+        }
+
     </style>
 </head>
 <body>
