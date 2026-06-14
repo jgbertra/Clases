@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="light only">
-    <meta name="supported-color-schemes" content="light">
+    <meta name="color-scheme" content="only light">
+    <meta name="supported-color-schemes" content="only light">
     <meta name="darkreader-lock">
     <title>Predicción Ácido-Base - Clase Magistral</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -148,6 +148,58 @@
             }
         }
 
+
+        /* --- BLOQUE EXTRA AGRESIVO: BLOQUEO DE MODO OSCURO FORZADO ---
+           Corrige Chrome/Android/iOS con dark mode automático y varias extensiones
+           que reducen brillo, opacidad o aplican filtros sobre imágenes. */
+        html {
+            color-scheme: only light !important;
+            background: #f3f0df !important;
+        }
+
+        body {
+            color-scheme: only light !important;
+            background: #f3f0df !important;
+            filter: none !important;
+            opacity: 1 !important;
+            mix-blend-mode: normal !important;
+        }
+
+        .presentation-container,
+        .slide-container,
+        .content-area,
+        .two-column,
+        .image-wrapper,
+        .game-container,
+        .image-stage {
+            filter: none !important;
+            opacity: 1 !important;
+            mix-blend-mode: normal !important;
+            background-blend-mode: normal !important;
+            -webkit-filter: none !important;
+        }
+
+        picture,
+        img,
+        video,
+        canvas,
+        svg {
+            -webkit-filter: none !important;
+            filter: none !important;
+            opacity: 1 !important;
+            mix-blend-mode: normal !important;
+            background-blend-mode: normal !important;
+            isolation: isolate !important;
+        }
+
+        html[data-darkreader-mode],
+        html[data-darkreader-scheme],
+        html[class*="dark"],
+        body[class*="dark"] {
+            color-scheme: only light !important;
+            background: #f3f0df !important;
+        }
+
     </style>
 </head>
 <body>
@@ -281,7 +333,48 @@
         currentSlide += direction;
         if (currentSlide < 0) currentSlide = slides.length - 1;
         if (currentSlide >= slides.length) currentSlide = 0;
-        updatePage();
+    
+    // Refuerzo dinámico contra modo oscuro forzado del navegador/extensiones.
+    function forceLightRendering() {
+        const root = document.documentElement;
+        const body = document.body;
+
+        root.setAttribute('data-force-light', 'true');
+        root.style.setProperty('color-scheme', 'only light', 'important');
+        root.style.setProperty('background', '#f3f0df', 'important');
+
+        body.style.setProperty('color-scheme', 'only light', 'important');
+        body.style.setProperty('background', '#f3f0df', 'important');
+        body.style.setProperty('filter', 'none', 'important');
+        body.style.setProperty('opacity', '1', 'important');
+        body.style.setProperty('mix-blend-mode', 'normal', 'important');
+
+        document.querySelectorAll('img, canvas, svg, video, .image-wrapper, .game-container, .image-stage').forEach(el => {
+            el.style.setProperty('filter', 'none', 'important');
+            el.style.setProperty('-webkit-filter', 'none', 'important');
+            el.style.setProperty('opacity', '1', 'important');
+            el.style.setProperty('mix-blend-mode', 'normal', 'important');
+            el.style.setProperty('background-blend-mode', 'normal', 'important');
+        });
+
+        document.querySelectorAll('.slide-container:not([style*="background"])').forEach(el => {
+            el.style.setProperty('background-color', '#f3f0df', 'important');
+        });
+
+        document.querySelectorAll('.image-wrapper:not([style*="transparent"]), .game-container').forEach(el => {
+            el.style.setProperty('background-color', '#ffffff', 'important');
+        });
+    }
+
+    forceLightRendering();
+    window.addEventListener('load', forceLightRendering);
+    window.addEventListener('pageshow', forceLightRendering);
+    setTimeout(forceLightRendering, 300);
+    setTimeout(forceLightRendering, 1200);
+
+
+    updatePage();
+    forceLightRendering();
     }
 
     document.addEventListener('keydown', (e) => {
@@ -320,7 +413,48 @@
     }
     slider.oninput = (e) => updateGame(parseInt(e.target.value));
 
+
+    // Refuerzo dinámico contra modo oscuro forzado del navegador/extensiones.
+    function forceLightRendering() {
+        const root = document.documentElement;
+        const body = document.body;
+
+        root.setAttribute('data-force-light', 'true');
+        root.style.setProperty('color-scheme', 'only light', 'important');
+        root.style.setProperty('background', '#f3f0df', 'important');
+
+        body.style.setProperty('color-scheme', 'only light', 'important');
+        body.style.setProperty('background', '#f3f0df', 'important');
+        body.style.setProperty('filter', 'none', 'important');
+        body.style.setProperty('opacity', '1', 'important');
+        body.style.setProperty('mix-blend-mode', 'normal', 'important');
+
+        document.querySelectorAll('img, canvas, svg, video, .image-wrapper, .game-container, .image-stage').forEach(el => {
+            el.style.setProperty('filter', 'none', 'important');
+            el.style.setProperty('-webkit-filter', 'none', 'important');
+            el.style.setProperty('opacity', '1', 'important');
+            el.style.setProperty('mix-blend-mode', 'normal', 'important');
+            el.style.setProperty('background-blend-mode', 'normal', 'important');
+        });
+
+        document.querySelectorAll('.slide-container:not([style*="background"])').forEach(el => {
+            el.style.setProperty('background-color', '#f3f0df', 'important');
+        });
+
+        document.querySelectorAll('.image-wrapper:not([style*="transparent"]), .game-container').forEach(el => {
+            el.style.setProperty('background-color', '#ffffff', 'important');
+        });
+    }
+
+    forceLightRendering();
+    window.addEventListener('load', forceLightRendering);
+    window.addEventListener('pageshow', forceLightRendering);
+    setTimeout(forceLightRendering, 300);
+    setTimeout(forceLightRendering, 1200);
+
+
     updatePage();
+    forceLightRendering();
 </script>
 </body>
 </html>
