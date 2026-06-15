@@ -446,7 +446,158 @@
             </style>
         </div>
     </div>
+<div class="slide-container">
+    <h2 class="slide-title">Selecciona la respuesta que consideres correcta para cada ejercicio</h2>
+    <div class="content-area">
+        <div class="quiz-wrapper">
+            <p class="quiz-instruction">
+                <strong>Ejercicio a):</strong> Determine cuál es la estructura mayoritaria cuando el ibuprofeno se encuentra en el estómago a <span class="ph-highlight">pH 2.0</span>
+            </p>
+            
+            <div class="quiz-options-container">
+                <div class="quiz-option-card" onclick="selectQuizOption(this, true)">
+                    <div class="option-label">Opción 1</div>
+                    <div class="option-img-box">
+                        <img src="ibu_prot.png" alt="Estructura Protonada">
+                    </div>
+                    <div class="feedback-icon"><i class="fa-solid fa-circle-check"></i></div>
+                </div>
 
+                <div class="quiz-option-card" onclick="selectQuizOption(this, false)">
+                    <div class="option-label">Opción 2</div>
+                    <div class="option-img-box">
+                        <img src="ibu_al_pka.png" alt="Estructura al pKa">
+                    </div>
+                    <div class="feedback-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                </div>
+
+                <div class="quiz-option-card" onclick="selectQuizOption(this, false)">
+                    <div class="option-label">Opción 3</div>
+                    <div class="option-img-box">
+                        <img src="ibu_deprot.png" alt="Estructura Desprotonada">
+                    </div>
+                    <div class="feedback-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                </div>
+            </div>
+            
+            <div id="quiz-feedback-text" class="quiz-feedback-msg">Haga clic en la estructura que considere correcta.</div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .quiz-wrapper {
+        width: 100%;
+        max-width: 1100px;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .quiz-instruction {
+        font-size: 24px;
+        color: #005088;
+        margin-bottom: 35px;
+        line-height: 1.4;
+    }
+    .quiz-options-container {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin-bottom: 25px;
+    }
+    .quiz-option-card {
+        background: white;
+        border: 2px solid #cbd5e1;
+        border-radius: 12px;
+        padding: 15px;
+        width: 300px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        position: relative;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    .quiz-option-card:hover {
+        transform: translateY(-4px);
+        border-color: #005088;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .option-label {
+        font-weight: 700;
+        color: #64748b;
+        margin-bottom: 10px;
+        font-size: 13px;
+        text-transform: uppercase;
+    }
+    .option-img-box {
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+    }
+    .option-img-box img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    .feedback-icon {
+        position: absolute;
+        top: -12px;
+        right: -12px;
+        font-size: 32px;
+        display: none;
+    }
+    
+    /* Estados interactivos */
+    .quiz-option-card.correct {
+        border-color: #11caa0;
+        background-color: #f0fdf4;
+    }
+    .quiz-option-card.correct .feedback-icon {
+        display: block;
+        color: #11caa0;
+    }
+    .quiz-option-card.incorrect {
+        border-color: #ef4444;
+        background-color: #fef2f2;
+        opacity: 0.65;
+    }
+    .quiz-option-card.incorrect .feedback-icon {
+        display: block;
+        color: #ef4444;
+    }
+    
+    .quiz-feedback-msg {
+        font-size: 18px;
+        font-weight: 500;
+        min-height: 28px;
+        color: #64748b;
+        margin-top: 20px;
+    }
+    .msg-correct { color: #11caa0 !important; font-weight: 700; }
+    .msg-incorrect { color: #ef4444 !important; }
+</style>
+
+<script>
+    function selectQuizOption(element, isCorrect) {
+        // Limpiar selecciones previas
+        const allOptions = document.querySelectorAll('.quiz-option-card');
+        allOptions.forEach(opt => {
+            opt.classList.remove('correct', 'incorrect');
+        });
+        
+        const feedbackText = document.getElementById('quiz-feedback-text');
+        
+        if (isCorrect) {
+            element.classList.add('correct');
+            feedbackText.innerText = "¡Excelente! A pH 2.0 (pH < pKa), el equilibrio se desplaza completamente hacia la forma protonada neutra.";
+            feedbackText.className = "quiz-feedback-msg msg-correct";
+        } else {
+            element.classList.add('incorrect');
+            feedbackText.innerText = "Incorrecto. Recuerda que si el pH (2.0) está muy por debajo del pKa (4.4), la especie mayoritaria debe ser la forma protonada.";
+            feedbackText.className = "quiz-feedback-msg msg-incorrect";
+        }
+    }
+</script>
 </div> <script>
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide-container');
