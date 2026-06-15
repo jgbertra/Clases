@@ -254,6 +254,18 @@
 <body>
 
 <div class="presentation-container">
+    <audio id="slide-audio" controls preload="metadata" style="
+        position: fixed;
+        bottom: 70px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 420px;
+        max-width: 80vw;
+        z-index: 3000;
+        display: block;
+    ">
+        Tu navegador no soporta reproducción de audio.
+    </audio>
     <button class="nav-btn prev-btn" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
     <button class="nav-btn next-btn" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
 
@@ -287,19 +299,7 @@
                 <div class="image-wrapper"><img src="acido_salicilico.png"></div>
             </div>
         </div>
-        <audio controls preload="metadata" style="
-    position: absolute;
-    bottom: 70px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 420px;
-    max-width: 80%;
-    z-index: 50;
-">
-    <source src="slide_2.m4a" type="audio/mp4">
-    Tu navegador no soporta reproducción de audio.
-</audio>
-    </div>
+</div>
 
     <div class="slide-container"><h2 class="slide-title">Disociación Ácida del Ácido Salicílico</h2><div class="content-area"><div class="image-wrapper"><img src="disociacion_salicilico.png"></div></div></div>
     <div class="slide-container"><h2 class="slide-title">Determinación de la concentración de todas las especies en el equilibrio a pH 0</h2><div class="content-area"><div class="image-wrapper"><img src="calculo ph 0.png"></div></div></div>
@@ -673,11 +673,30 @@
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide-container');
     const pageNumDisplay = document.getElementById('page-num');
+    const slideAudio = document.getElementById('slide-audio');
+
+    function updateSlideAudio(index) {
+        if (!slideAudio) return;
+
+        const numeroSlide = index + 1;
+        const audioSrc = `slide_${numeroSlide}.m4a`;
+
+        slideAudio.pause();
+        slideAudio.currentTime = 0;
+
+        if (!slideAudio.src.endsWith(audioSrc)) {
+            slideAudio.src = audioSrc;
+            slideAudio.load();
+        }
+
+        slideAudio.style.display = "block";
+    }
 
     function showSlide(index) {
         slides.forEach(slide => slide.classList.remove('active'));
         slides[index].classList.add('active');
         pageNumDisplay.innerText = `${index + 1} / ${slides.length}`;
+        updateSlideAudio(index);
         
         // Forzar recalculo de gráficos si se entra a la slide del gráfico Plotly
         if(index === 23) {
@@ -699,6 +718,9 @@
         if (e.key === 'ArrowRight' || e.key === ' ') moveSlide(1);
         if (e.key === 'ArrowLeft') moveSlide(-1);
     });
+
+    // Inicializa el audio de la primera diapositiva al cargar la presentación
+    updateSlideAudio(currentSlide);
 
     // --- JUEGO 1: ÁCIDO SALICÍLICO ---
     const gameSlider = document.getElementById('ph-slider');
