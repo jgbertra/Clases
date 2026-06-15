@@ -53,7 +53,7 @@
         .ibu-item-alt { border-left-color: #11caa0 !important; }
         .ibu-image-box { height: 380px !important; padding: 10px; background: white; border: 1px solid #cbd5e1; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
 
-        /* ESTILOS ORIGINALES DEL JUEGO (REVERTIDOS) */
+        /* ESTILOS ORIGINALES DEL JUEGO */
         .game-container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; width: 100%; max-width: 900px; }
         .image-stage { position: relative; width: 100%; max-width: 850px; margin: 0 auto; aspect-ratio: 16 / 9; }
         .ph-image { width: 100%; height: 100%; object-fit: contain; display: none; }
@@ -66,10 +66,7 @@
         .slider-labels span { position: absolute; font-weight: bold; color: #7f8c8d; font-size: 14px; transform: translateX(-50%); cursor: pointer; }
         .slider-labels span.active { color: #2980b9; font-size: 16px; }
 
-
-        /* --- BLOQUE ANTI-MODO OSCURO / ANTI-OSCURECIMIENTO AUTOMÁTICO ---
-           Este bloque fuerza una apariencia clara en navegadores y dispositivos
-           con dark mode activo, y evita que las imágenes se mezclen u oscurezcan. */
+        /* BLOQUE ANTI-MODO OSCURO */
         :root {
             color-scheme: light only;
             supported-color-schemes: light;
@@ -148,10 +145,6 @@
             }
         }
 
-
-        /* --- BLOQUE EXTRA AGRESIVO: BLOQUEO DE MODO OSCURO FORZADO ---
-           Corrige Chrome/Android/iOS con dark mode automático y varias extensiones
-           que reducen brillo, opacidad o aplican filtros sobre imágenes. */
         html {
             color-scheme: only light !important;
             background: #f3f0df !important;
@@ -199,9 +192,11 @@
             color-scheme: only light !important;
             background: #f3f0df !important;
         }
-
     </style>
+
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 </head>
+
 <body>
 
 <div class="presentation-container">
@@ -255,39 +250,60 @@
     <div class="slide-container"><h2 class="slide-title">Representación de la disolución a pH = 13.80</h2><div class="content-area"><div class="image-wrapper"><img src="13_80_old.png"></div></div></div>
     <div class="slide-container"><h2 class="slide-title">Determinación de la concentración de todas las especies en el equilibrio a pH 14</h2><div class="content-area"><div class="image-wrapper"><img src="calculo ph 14.png"></div></div></div>
     <div class="slide-container"><h2 class="slide-title">Representación de la disolución a pH = 14: </h2><div class="content-area"><div class="image-wrapper"><img src="14_old.png"></div></div></div>
-    
-    <div class="slide-container"><div class="content-area"><blockquote>"Ahora bien, ¿Es necesario hacer los cálculos matemáticos?"</blockquote></div></div>
-    
-    <div class="slide-container">
-  <h2 class="slide-title">Estrategia Predictiva</h2>
-  <div class="content-area">
-    <div class="two-column">
-      <div style="margin-left: 40%; max-width: 720px;">
-        <h3 style="color: #11caa0; font-size: 52px;">No necesariamente.</h3>
-        <p style="font-size: 28px; color: #334155;">
-          Podemos predecir el comportamiento basándonos en los conceptos 
-          <strong>ácido-base</strong> y el valor de <strong>pKa</strong>.
-        </p>
-      </div>
-      <div style="text-align: center;">
-        <i class="fa-solid fa-brain" style="color: #005088; font-size: 200px; opacity: 0.1;"></i>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="slide-container">
-  <h2 class="slide-title">Cuando el pH = pKa₁, se obtiene que:</h2>
+    <div class="slide-container"><div class="content-area"><blockquote>"Ahora bien, ¿Es necesario hacer los cálculos matemáticos?"</blockquote></div></div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">Estrategia Predictiva</h2>
         <div class="content-area">
-            <p style="text-align: center; font-size: 26px; margin-bottom: 50px;">Mezcla equitativa de especies:</p>
-            <div style="width: 100%; max-width: 900px;"><div style="display: flex; align-items: center; margin-bottom: 25px;"><div style="width: 350px; font-weight: 700; color: #005088; text-align: right; padding-right: 20px; font-size: 22px;">Especie A (Protonada)</div><div style="flex-grow: 1; background: #d1d5db; height: 50px; border-radius: 25px; overflow: hidden;"><div style="width: 50%; background: #005088; height: 100%; color: white; display: flex; align-items: center; padding-left: 20px; font-weight: 700;">50%</div></div></div><div style="display: flex; align-items: center;"><div style="width: 350px; font-weight: 700; color: #11caa0; text-align: right; padding-right: 20px; font-size: 22px;">Especie B (Mono-desprot.)</div><div style="flex-grow: 1; background: #d1d5db; height: 50px; border-radius: 25px; overflow: hidden;"><div style="width: 50%; background: #11caa0; height: 100%; color: white; display: flex; align-items: center; padding-left: 20px; font-weight: 700;">50%</div></div></div></div>
+            <div class="two-column">
+                <div style="margin-left: 40%; max-width: 720px;">
+                    <h3 style="color: #11caa0; font-size: 52px;">No necesariamente.</h3>
+                    <p style="font-size: 28px; color: #334155;">
+                        Podemos predecir el comportamiento basándonos en los conceptos
+                        <strong>ácido-base</strong> y el valor de <strong>pKa</strong>.
+                    </p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fa-solid fa-brain" style="color: #005088; font-size: 200px; opacity: 0.1;"></i>
+                </div>
+            </div>
         </div>
     </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">Cuando el pH = pKa₁, se obtiene que:</h2>
+        <div class="content-area">
+            <p style="text-align: center; font-size: 26px; margin-bottom: 50px;">Mezcla equitativa de especies:</p>
+            <div style="width: 100%; max-width: 900px;">
+                <div style="display: flex; align-items: center; margin-bottom: 25px;">
+                    <div style="width: 350px; font-weight: 700; color: #005088; text-align: right; padding-right: 20px; font-size: 22px;">Especie A (Protonada)</div>
+                    <div style="flex-grow: 1; background: #d1d5db; height: 50px; border-radius: 25px; overflow: hidden;">
+                        <div style="width: 50%; background: #005088; height: 100%; color: white; display: flex; align-items: center; padding-left: 20px; font-weight: 700;">50%</div>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <div style="width: 350px; font-weight: 700; color: #11caa0; text-align: right; padding-right: 20px; font-size: 22px;">Especie B (Mono-desprot.)</div>
+                    <div style="flex-grow: 1; background: #d1d5db; height: 50px; border-radius: 25px; overflow: hidden;">
+                        <div style="width: 50%; background: #11caa0; height: 100%; color: white; display: flex; align-items: center; padding-left: 20px; font-weight: 700;">50%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="slide-container"><h2 class="slide-title">Por tanto se cumple que para toda Región pH &lt; pKa₁</h2><div class="content-area"><div class="two-column"><div style="background: white; border-radius: 20px; padding: 20px; text-align: center; border-top: 10px solid #005088; box-shadow: 0 4px 15px rgba(0,0,0,0.05);"><img src="estructura_mayoritaria_A.png" alt="Estructura mayoritaria A" style="max-width: 100%; height: auto; max-height: 320px; object-fit: contain;"></div><p style="font-size: 32px; color: #334155;">Predomina la forma totalmente protonada.</p></div></div></div>
     <div class="slide-container"><h2 class="slide-title">Si nos encontramos en la condición en que pKa₁ &lt; pH &lt; pKa₂</h2><div class="content-area"><div class="two-column"><div style="background: white; border-radius: 20px; padding: 50px; text-align: center; border-top: 10px solid #11caa0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);"><img src="estructura_mayoritaria_B.png" alt="Estructura mayoritaria B" style="max-width: 100%; height: auto; max-height: 320px; object-fit: contain;"></div><p style="font-size: 32px; color: #334155;">Predomina la especie B. ¡Esto incluye pH = 5!</p></div></div></div>
     <div class="slide-container"><h2 class="slide-title">Por otro lado, si la Región pH &gt; pKa₂</h2><div class="content-area"><div class="two-column"><div style="background: white; border-radius: 20px; padding: 50px; text-align: center; border-top: 10px solid #64748b; box-shadow: 0 4px 15px rgba(0,0,0,0.05);"><img src="estructura_mayoritaria_C.png" alt="Estructura mayoritaria C" style="max-width: 100%; height: auto; max-height: 320px; object-fit: contain;"></div><p style="font-size: 32px; color: #334155;">Predomina la estructura bi-desprotonada.</p></div></div></div>
-    
-    <div class="slide-container"><h2 class="slide-title">Curva de Distribución</h2><div class="content-area"><div class="image-wrapper" style="border:none; background:transparent;"><img src="Distribución de especies del ácido salicílico.png"></div></div></div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">Curva de Distribución</h2>
+        <div class="content-area">
+            <div class="image-wrapper" style="border:none; background:transparent;">
+                <div id="grafico-distribucion-salicilico" style="width: 100%; height: 100%; min-height: 520px;"></div>
+            </div>
+        </div>
+    </div>
 
     <div class="slide-container" style="background: #005088; justify-content: center; align-items: center;">
         <div class="content-area">
@@ -338,17 +354,6 @@
     const slides = document.querySelectorAll('.slide-container');
     const pageDisplay = document.getElementById('page-num');
 
-    function updatePage() {
-        slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
-        pageDisplay.innerText = `${currentSlide + 1} / ${slides.length}`;
-    }
-
-    function moveSlide(direction) {
-        currentSlide += direction;
-        if (currentSlide < 0) currentSlide = slides.length - 1;
-        if (currentSlide >= slides.length) currentSlide = 0;
-    
-    // Refuerzo dinámico contra modo oscuro forzado del navegador/extensiones.
     function forceLightRendering() {
         const root = document.documentElement;
         const body = document.body;
@@ -380,15 +385,22 @@
         });
     }
 
-    forceLightRendering();
-    window.addEventListener('load', forceLightRendering);
-    window.addEventListener('pageshow', forceLightRendering);
-    setTimeout(forceLightRendering, 300);
-    setTimeout(forceLightRendering, 1200);
+    function updatePage() {
+        slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
+        pageDisplay.innerText = `${currentSlide + 1} / ${slides.length}`;
+        forceLightRendering();
 
+        const grafico = document.getElementById('grafico-distribucion-salicilico');
+        if (grafico && typeof Plotly !== 'undefined') {
+            setTimeout(() => Plotly.Plots.resize(grafico), 80);
+        }
+    }
 
-    updatePage();
-    forceLightRendering();
+    function moveSlide(direction) {
+        currentSlide += direction;
+        if (currentSlide < 0) currentSlide = slides.length - 1;
+        if (currentSlide >= slides.length) currentSlide = 0;
+        updatePage();
     }
 
     document.addEventListener('keydown', (e) => {
@@ -396,69 +408,248 @@
         if (e.key === "ArrowLeft") moveSlide(-1);
     });
 
-    // Lógica Nativa del Simulador
+    // Lógica nativa del simulador de pH
     const slider = document.getElementById('ph-slider');
     const labelsContainer = document.getElementById('ph-labels-container');
     const overlay = document.getElementById('structure-overlay');
     const phValores = ["0", "1", "2", "2,90", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "13,80", "14"];
-    const structureByImage = { 0: "estructura_mayoritaria_A.png", 1: "estructura_mayoritaria_A.png", 2: "estructura_mayoritaria_A.png", 3: "estructura_mayoritaria_A_y_B.png", 4: "estructura_mayoritaria_B.png", 5: "estructura_mayoritaria_B.png", 6: "estructura_mayoritaria_B.png", 7: "estructura_mayoritaria_B.png", 8: "estructura_mayoritaria_B.png", 9: "estructura_mayoritaria_B.png", 10: "estructura_mayoritaria_B.png", 11: "estructura_mayoritaria_B.png", 12: "estructura_mayoritaria_B.png", 13: "estructura_mayoritaria_B.png", 14: "estructura_mayoritaria_B.png", 15: "estructura_mayoritaria_B_y_C.png", 16: "estructura_mayoritaria_C.png" };
+    const structureByImage = {
+        0: "estructura_mayoritaria_A.png",
+        1: "estructura_mayoritaria_A.png",
+        2: "estructura_mayoritaria_A.png",
+        3: "estructura_mayoritaria_A_y_B.png",
+        4: "estructura_mayoritaria_B.png",
+        5: "estructura_mayoritaria_B.png",
+        6: "estructura_mayoritaria_B.png",
+        7: "estructura_mayoritaria_B.png",
+        8: "estructura_mayoritaria_B.png",
+        9: "estructura_mayoritaria_B.png",
+        10: "estructura_mayoritaria_B.png",
+        11: "estructura_mayoritaria_B.png",
+        12: "estructura_mayoritaria_B.png",
+        13: "estructura_mayoritaria_B.png",
+        14: "estructura_mayoritaria_B.png",
+        15: "estructura_mayoritaria_B_y_C.png",
+        16: "estructura_mayoritaria_C.png"
+    };
 
-    phValores.forEach((v, i) => {
-        const span = document.createElement('span');
-        span.textContent = v;
-        span.id = `label-${i}`;
-        if (i === 0) span.classList.add('active');
-        span.style.left = `calc(${(i / (phValores.length-1)) * 100}% + (${12 - (24 * i / (phValores.length-1))}px))`;
-        span.onclick = () => { slider.value = i; updateGame(i); };
-        labelsContainer.appendChild(span);
-    });
+    if (slider && labelsContainer && overlay) {
+        phValores.forEach((v, i) => {
+            const span = document.createElement('span');
+            span.textContent = v;
+            span.id = `label-${i}`;
+            if (i === 0) span.classList.add('active');
+            span.style.left = `calc(${(i / (phValores.length - 1)) * 100}% + (${12 - (24 * i / (phValores.length - 1))}px))`;
+            span.onclick = () => {
+                slider.value = i;
+                updateGame(i);
+            };
+            labelsContainer.appendChild(span);
+        });
 
-    function updateGame(idx) {
-        document.querySelectorAll('.ph-image').forEach(img => img.classList.remove('active'));
-        document.querySelectorAll('.slider-labels span').forEach(l => l.classList.remove('active'));
-        if (document.getElementById(`img-${idx}`)) document.getElementById(`img-${idx}`).classList.add('active');
-        if (document.getElementById(`label-${idx}`)) document.getElementById(`label-${idx}`).classList.add('active');
-        if (structureByImage[idx]) {
-            overlay.src = structureByImage[idx];
-            overlay.style.display = 'block';
-            if (idx === 3 || idx === 15) overlay.classList.add('overlay-large');
-            else overlay.classList.remove('overlay-large');
-        } else overlay.style.display = 'none';
+        function updateGame(idx) {
+            document.querySelectorAll('.ph-image').forEach(img => img.classList.remove('active'));
+            document.querySelectorAll('.slider-labels span').forEach(l => l.classList.remove('active'));
+
+            const img = document.getElementById(`img-${idx}`);
+            const label = document.getElementById(`label-${idx}`);
+
+            if (img) img.classList.add('active');
+            if (label) label.classList.add('active');
+
+            if (structureByImage[idx]) {
+                overlay.src = structureByImage[idx];
+                overlay.style.display = 'block';
+
+                if (idx === 3 || idx === 15) {
+                    overlay.classList.add('overlay-large');
+                } else {
+                    overlay.classList.remove('overlay-large');
+                }
+            } else {
+                overlay.style.display = 'none';
+            }
+        }
+
+        slider.oninput = (e) => updateGame(parseInt(e.target.value));
     }
-    slider.oninput = (e) => updateGame(parseInt(e.target.value));
 
+    // Gráfico interactivo: distribución ácido-base del ácido salicílico
+    (function crearGraficoDistribucionSalicilico() {
+        const contenedor = document.getElementById("grafico-distribucion-salicilico");
+        if (!contenedor || typeof Plotly === "undefined") return;
 
-    // Refuerzo dinámico contra modo oscuro forzado del navegador/extensiones.
-    function forceLightRendering() {
-        const root = document.documentElement;
-        const body = document.body;
+        const pKa1 = 2.90;
+        const pKa2 = 13.80;
 
-        root.setAttribute('data-force-light', 'true');
-        root.style.setProperty('color-scheme', 'only light', 'important');
-        root.style.setProperty('background', '#f3f0df', 'important');
+        const Ka1 = Math.pow(10, -pKa1);
+        const Ka2 = Math.pow(10, -pKa2);
 
-        body.style.setProperty('color-scheme', 'only light', 'important');
-        body.style.setProperty('background', '#f3f0df', 'important');
-        body.style.setProperty('filter', 'none', 'important');
-        body.style.setProperty('opacity', '1', 'important');
-        body.style.setProperty('mix-blend-mode', 'normal', 'important');
+        const pH = [];
+        const A = [];
+        const B = [];
+        const C = [];
 
-        document.querySelectorAll('img, canvas, svg, video, .image-wrapper, .game-container, .image-stage').forEach(el => {
-            el.style.setProperty('filter', 'none', 'important');
-            el.style.setProperty('-webkit-filter', 'none', 'important');
-            el.style.setProperty('opacity', '1', 'important');
-            el.style.setProperty('mix-blend-mode', 'normal', 'important');
-            el.style.setProperty('background-blend-mode', 'normal', 'important');
+        for (let i = 0; i <= 1400; i++) {
+            const ph = i / 100;
+            const H = Math.pow(10, -ph);
+            const denominador = Math.pow(H, 2) + Ka1 * H + Ka1 * Ka2;
+
+            const alphaA = 100 * Math.pow(H, 2) / denominador;
+            const alphaB = 100 * Ka1 * H / denominador;
+            const alphaC = 100 * Ka1 * Ka2 / denominador;
+
+            pH.push(Number(ph.toFixed(2)));
+            A.push(alphaA);
+            B.push(alphaB);
+            C.push(alphaC);
+        }
+
+        const nombresBase = [
+            "A: ácido 2-hidroxibenzoico",
+            "B: 2-hidroxibenzoato",
+            "C: 2-oxidobenzoato"
+        ];
+
+        function formatoPorcentaje(valor) {
+            return valor.toFixed(2) + "%";
+        }
+
+        const datos = [
+            {
+                x: pH,
+                y: A,
+                mode: "lines",
+                name: nombresBase[0],
+                line: { color: "#2f9bff", width: 4, shape: "spline", smoothing: 1.15 },
+                hovertemplate: "A: %{y:.2f}%<extra></extra>"
+            },
+            {
+                x: pH,
+                y: B,
+                mode: "lines",
+                name: nombresBase[1],
+                line: { color: "#38c976", width: 4, shape: "spline", smoothing: 1.15 },
+                hovertemplate: "B: %{y:.2f}%<extra></extra>"
+            },
+            {
+                x: pH,
+                y: C,
+                mode: "lines",
+                name: nombresBase[2],
+                line: { color: "#ff7b3f", width: 4, shape: "spline", smoothing: 1.15 },
+                hovertemplate: "C: %{y:.2f}%<extra></extra>"
+            }
+        ];
+
+        const layout = {
+            title: {
+                text: "Distribución de especies del ácido salicílico",
+                x: 0.02,
+                xanchor: "left",
+                font: { size: 22, color: "#111827" }
+            },
+            annotations: [
+                {
+                    text: "Abundancia relativa de ácido 2-hidroxibenzoico (A), 2-hidroxibenzoato (B) y 2-oxidobenzoato (C) en función del pH.",
+                    x: 0.02,
+                    y: 1.08,
+                    xref: "paper",
+                    yref: "paper",
+                    showarrow: false,
+                    xanchor: "left",
+                    font: { size: 15, color: "#6b7280" }
+                }
+            ],
+            hovermode: "x unified",
+            margin: { l: 70, r: 30, t: 90, b: 82 },
+            paper_bgcolor: "white",
+            plot_bgcolor: "white",
+            xaxis: {
+                title: { text: "pH", standoff: 18 },
+                range: [-0.25, 14.25],
+                dtick: 1,
+                zeroline: false,
+                showgrid: false,
+                tickfont: { size: 14, color: "#7a7f87" }
+            },
+            yaxis: {
+                title: { text: "Abundancia relativa (%)", standoff: 18 },
+                range: [0, 120],
+                dtick: 30,
+                ticksuffix: "%",
+                zeroline: false,
+                gridcolor: "#edf0f4",
+                griddash: "dot",
+                tickfont: { size: 14, color: "#7a7f87" }
+            },
+            legend: {
+                orientation: "h",
+                x: 0.5,
+                y: -0.16,
+                xanchor: "center",
+                yanchor: "top",
+                font: { size: 15 },
+                itemsizing: "constant"
+            },
+            hoverlabel: {
+                bgcolor: "white",
+                bordercolor: "#d1d5db",
+                font: { color: "#111827", size: 14 }
+            }
+        };
+
+        const config = {
+            responsive: true,
+            displaylogo: false,
+            modeBarButtonsToRemove: ["lasso2d", "select2d"]
+        };
+
+        Plotly.newPlot(contenedor, datos, layout, config);
+
+        function indiceMasCercano(valorX) {
+            let indice = 0;
+            let diferenciaMinima = Infinity;
+
+            for (let i = 0; i < pH.length; i++) {
+                const diferencia = Math.abs(pH[i] - valorX);
+                if (diferencia < diferenciaMinima) {
+                    diferenciaMinima = diferencia;
+                    indice = i;
+                }
+            }
+
+            return indice;
+        }
+
+        function actualizarLeyenda(indice) {
+            Plotly.restyle(
+                contenedor,
+                {
+                    name: [
+                        `A: ${formatoPorcentaje(A[indice])}`,
+                        `B: ${formatoPorcentaje(B[indice])}`,
+                        `C: ${formatoPorcentaje(C[indice])}`
+                    ]
+                },
+                [0, 1, 2]
+            );
+        }
+
+        contenedor.on("plotly_hover", function (eventData) {
+            const valorX = eventData.points[0].x;
+            const indice = indiceMasCercano(valorX);
+            actualizarLeyenda(indice);
         });
 
-        document.querySelectorAll('.slide-container:not([style*="background"])').forEach(el => {
-            el.style.setProperty('background-color', '#f3f0df', 'important');
+        contenedor.on("plotly_unhover", function () {
+            Plotly.restyle(contenedor, { name: nombresBase }, [0, 1, 2]);
         });
 
-        document.querySelectorAll('.image-wrapper:not([style*="transparent"]), .game-container').forEach(el => {
-            el.style.setProperty('background-color', '#ffffff', 'important');
+        window.addEventListener("resize", function () {
+            Plotly.Plots.resize(contenedor);
         });
-    }
+    })();
 
     forceLightRendering();
     window.addEventListener('load', forceLightRendering);
@@ -466,9 +657,8 @@
     setTimeout(forceLightRendering, 300);
     setTimeout(forceLightRendering, 1200);
 
-
     updatePage();
-    forceLightRendering();
 </script>
+
 </body>
 </html>
