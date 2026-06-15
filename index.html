@@ -107,16 +107,21 @@
         .ph-slider-container {
             width: 100%;
             margin-bottom: 8px;
+            padding: 0 11px; /* Añade margen para compensar exactamente la mitad del tamaño del thumb */
+            box-sizing: border-box;
         }
         #ibu-ph-input {
             -webkit-appearance: none;
+            appearance: none;
             width: 100%;
             height: 8px;
             border-radius: 4px;
             background: linear-gradient(to right, #4299e1, #48bb78, #ecc94b, #f56565);
             outline: none;
             margin: 0;
+            padding: 0;
             cursor: pointer;
+            display: block;
         }
         #ibu-ph-input::-webkit-slider-thumb {
             -webkit-appearance: none;
@@ -128,18 +133,21 @@
             border: 3px solid #2b6cb0;
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
             cursor: grab;
+            margin-top: 0px;
         }
         .ph-axis-line-wrapper {
             position: relative;
             width: 100%;
             height: 40px;
             margin-top: 5px;
+            padding: 0 11px; /* Sincroniza los bordes de la escala con la física exacta del slider */
+            box-sizing: border-box;
         }
         .ph-base-line {
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            left: 11px;
+            right: 11px;
             height: 2px;
             background-color: #cbd5e0;
         }
@@ -170,7 +178,7 @@
             font-weight: 600;
             color: #4a5568;
             margin-top: 6px;
-          }
+        }
         .ph-pka-num {
             color: #e53e3e;
             font-weight: 700;
@@ -239,27 +247,8 @@
         .presentation-container, .slide-container, .content-area, .two-column, .image-wrapper, .game-container, .image-stage { filter: none !important; opacity: 1 !important; mix-blend-mode: normal !important; background-blend-mode: normal !important; -webkit-filter: none !important; }
         picture, img, video, canvas, svg { -webkit-filter: none !important; filter: none !important; opacity: 1 !important; mix-blend-mode: normal !important; background-blend-mode: normal !important; isolation: isolate !important; }
         html[data-darkreader-mode], html[data-darkreader-scheme], html[class*="dark"], body[class*="dark"] { color-scheme: only light !important; background: #f3f0df !important; }
-    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-    
-    <style>
-        /* Ajuste para equilibrar los bordes y el centrado del slider de pH */
-        input[type="range"] {
-            -webkit-appearance: none;
-            width: 100%;
-            margin: 0;
-            box-sizing: border-box;
-        }
-
-        /* Centrado exacto del botón arrastrable */
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            position: relative;
-            z-index: 2;
-        }
     </style>
-    
-
-
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 </head>
 
 <body>
@@ -270,7 +259,7 @@
 
     <div class="footer-nav">
         <div class="author-tag">Creado por Dr. Jean-Luc Bertrand</div>
-        <div class="slide-counter" id="page-num">1 / 30</div>
+        <div class="slide-counter" id="page-num">1 / 33</div>
     </div>
 
     <div class="slide-container active" style="background: linear-gradient(rgba(0, 80, 136, 0.96), rgba(0, 80, 136, 0.96)); justify-content: center; align-items: center;">
@@ -359,7 +348,7 @@
 
     <div class="slide-container"><h2 class="slide-title">Por tanto se cumple que para toda Región pH &lt; pKa₁</h2><div class="content-area"><div class="two-column"><div style="background: white; border-radius: 20px; padding: 20px; text-align: center; border-top: 10px solid #005088; box-shadow: 0 4px 15px rgba(0,0,0,0.05);"><img src="estructura_mayoritaria_A.png" alt="Estructura mayoritaria A" style="max-width: 100%; height: auto; max-height: 320px; object-fit: contain;"></div><p style="font-size: 32px; color: #334155;">Predomina la forma totalmente protonada.</p></div></div></div>
     <div class="slide-container"><h2 class="slide-title">Si nos encontramos en la condición en que pKa₁ &lt; pH &lt; pKa₂</h2><div class="content-area"><div class="two-column"><div style="background: white; border-radius: 20px; padding: 50px; text-align: center; border-top: 10px solid #11caa0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);"><img src="estructura_mayoritaria_B.png" alt="Estructura mayoritaria B" style="max-width: 100%; height: auto; max-height: 320px; object-fit: contain;"></div><p style="font-size: 32px; color: #334155;">Predomina la especie B. ¡Esto incluye pH = 5!</p></div></div></div>
-    <div class="slide-container"><h2 class="slide-title">Por otro lado, si la Región pH &gt; pKa₂</h2><div class="content-area"><div class="two-column"><div style="background: white; border-radius: 20px; padding: 50px; text-align: center; border-top: 10px solid #64748b; box-shadow: 0 4px 15px rgba(0,0,0,0.05);"><img src="estructura_mayoritaria_C.png" alt="Estructura mayoritaria C" style="max-width: 100%; height: auto; max-height: 320px; object-fit: contain;"></div><p style="font-size: 32px; color: #334155;">Predomina la estructura bi-desprotonada.</p></div></div></div>
+    <div class="slide-container"><h2 class="slide-title">Por otro lado, if la Región pH &gt; pKa₂</h2><div class="content-area"><div class="two-column"><div style="background: white; border-radius: 20px; padding: 50px; text-align: center; border-top: 10px solid #64748b; box-shadow: 0 4px 15px rgba(0,0,0,0.05);"><img src="estructura_mayoritaria_C.png" alt="Estructura mayoritaria C" style="max-width: 100%; height: auto; max-height: 320px; object-fit: contain;"></div><p style="font-size: 32px; color: #334155;">Predomina la estructura bi-desprotonada.</p></div></div></div>
 
     <div class="slide-container">
         <h2 class="slide-title">Curva de Distribución: Juega colocando el mouse sobre el gráfico</h2>
@@ -435,57 +424,88 @@
                 </div>
                 <div class="ph-readout-box">pH Actual: <span id="ibu-ph-numeric">0.0</span></div>
             </div>
-            <style>
-               #ibu-ph-input {
-                   width: 100% !important;
-                   margin: 0 !important;
-                   padding: 0 !important;
-                   box-sizing: border-box !important;
-                   -webkit-appearance: none; /* Quita estilos raros de navegadores */
-               }
-            </style>
         </div>
     </div>
-<div class="slide-container">
-    <h2 class="slide-title">Selecciona la respuesta que consideres correcta para cada ejercicio</h2>
-    <div class="content-area">
-        <div class="quiz-wrapper">
-            <p class="quiz-instruction">
-                <strong>Ejercicio a):</strong> Determine cuál es la estructura mayoritaria cuando el ibuprofeno se encuentra en el estómago a <span class="ph-highlight">pH 2.0</span>
-            </p>
-            
-            <div class="quiz-options-container">
-                <div class="quiz-option-card" onclick="selectQuizOption(this, true)">
-                    <div class="option-label">Opción 1</div>
-                    <div class="option-img-box">
-                        <img src="ibu_prot.png" alt="Estructura Protonada">
-                    </div>
-                    <div class="feedback-icon"><i class="fa-solid fa-circle-check"></i></div>
-                </div>
 
-                <div class="quiz-option-card" onclick="selectQuizOption(this, false)">
-                    <div class="option-label">Opción 2</div>
-                    <div class="option-img-box">
-                        <img src="ibu_al_pka.png" alt="Estructura al pKa">
+    <div class="slide-container">
+        <h2 class="slide-title">Selecciona la respuesta que consideres correcta para cada ejercicio</h2>
+        <div class="content-area">
+            <div class="quiz-wrapper">
+                <p class="quiz-instruction">
+                    <strong>Ejercicio a):</strong> Determine cuál es la estructura mayoritaria cuando el ibuprofeno se encuentra en el estómago a <span class="ph-highlight">pH 2.0</span>
+                </p>
+                
+                <div class="quiz-options-container">
+                    <div class="quiz-option-card" onclick="selectQuizOption(this, true)">
+                        <div class="option-label">Opción 1</div>
+                        <div class="option-img-box">
+                            <img src="ibu_prot.png" alt="Estructura Protonada">
+                        </div>
+                        <div class="feedback-icon"><i class="fa-solid fa-circle-check"></i></div>
                     </div>
-                    <div class="feedback-icon"><i class="fa-solid fa-circle-xmark"></i></div>
-                </div>
 
-                <div class="quiz-option-card" onclick="selectQuizOption(this, false)">
-                    <div class="option-label">Opción 3</div>
-                    <div class="option-img-box">
-                        <img src="ibu_deprot.png" alt="Estructura Desprotonada">
+                    <div class="quiz-option-card" onclick="selectQuizOption(this, false)">
+                        <div class="option-label">Opción 2</div>
+                        <div class="option-img-box">
+                            <img src="ibu_al_pka.png" alt="Estructura al pKa">
+                        </div>
+                        <div class="feedback-icon"><i class="fa-solid fa-circle-xmark"></i></div>
                     </div>
-                    <div class="feedback-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+
+                    <div class="quiz-option-card" onclick="selectQuizOption(this, false)">
+                        <div class="option-label">Opción 3</div>
+                        <div class="option-img-box">
+                            <img src="ibu_deprot.png" alt="Estructura Desprotonada">
+                        </div>
+                        <div class="feedback-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                    </div>
                 </div>
+                
+                <div id="quiz-feedback-text" class="quiz-feedback-msg">Haga clic en la estructura que considere correcta.</div>
             </div>
-            
-            <div id="quiz-feedback-text" class="quiz-feedback-msg">Haga clic en la estructura que considere correcta.</div>
         </div>
     </div>
-</div>
 
-<style>
+    <div class="slide-container">
+        <h2 class="slide-title">Selecciona la respuesta que consideres correcta para cada ejercicio</h2>
+        <div class="content-area">
+            <div class="quiz-wrapper">
+                <p class="quiz-instruction">
+                    <strong>Ejercicio b):</strong> Determine la estructura química del ibuprofeno que se absorbe en el intestino delgado (<span class="ph-highlight" style="background-color: #4299e1;">pH promedio 6.1</span>)
+                </p>
+                
+                <div class="quiz-options-container">
+                    <div class="quiz-option-card" onclick="selectQuizOptionB(this, false)">
+                        <div class="option-label">Opción 1</div>
+                        <div class="option-img-box">
+                            <img src="ibu_prot.png" alt="Estructura Protonada">
+                        </div>
+                        <div class="feedback-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                    </div>
+
+                    <div class="quiz-option-card" onclick="selectQuizOptionB(this, false)">
+                        <div class="option-label">Opción 2</div>
+                        <div class="option-img-box">
+                            <img src="ibu_al_pka.png" alt="Estructura al pKa">
+                        </div>
+                        <div class="feedback-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                    </div>
+
+                    <div class="quiz-option-card" onclick="selectQuizOptionB(this, true)">
+                        <div class="option-label">Opción 3</div>
+                        <div class="option-img-box">
+                            <img src="ibu_deprot.png" alt="Estructura Desprotonada">
+                        </div>
+                        <div class="feedback-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    </div>
+                </div>
+                
+                <div id="quiz-feedback-text-b" class="quiz-feedback-msg">Haga clic en la estructura que considere correcta para el pH 6.1.</div>
+            </div>
+        </div>
+    </div>
+
+</div> <style>
     .quiz-wrapper {
         width: 100%;
         max-width: 1100px;
@@ -547,7 +567,7 @@
         display: none;
     }
     
-    /* Estados interactivos */
+    /* Estados dinámicos de selección */
     .quiz-option-card.correct {
         border-color: #11caa0;
         background-color: #f0fdf4;
@@ -578,288 +598,191 @@
 </style>
 
 <script>
+    // --- LÓGICA DE CONTROL DE DIAPOSITIVAS ---
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide-container');
+    const pageNumDisplay = document.getElementById('page-num');
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+        pageNumDisplay.innerText = `${index + 1} / ${slides.length}`;
+        
+        // Forzar recalculo de gráficos si se entra a la slide del gráfico Plotly
+        if(index === 23) {
+            setTimeout(() => {
+                Plotly.Plots.resize('grafico-distribucion-salicilico');
+            }, 100);
+        }
+    }
+
+    function moveSlide(step) {
+        let newSlide = currentSlide + step;
+        if (newSlide >= 0 && newSlide < slides.length) {
+            currentSlide = newSlide;
+            showSlide(currentSlide);
+        }
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') moveSlide(1);
+        if (e.key === 'ArrowLeft') moveSlide(-1);
+    });
+
+    // --- JUEGO 1: ÁCIDO SALICÍLICO ---
+    const gameSlider = document.getElementById('ph-slider');
+    const labelsContainer = document.getElementById('ph-labels-container');
+    const overlay = document.getElementById('structure-overlay');
+
+    const gameData = [
+        { ph: "0", img: "0_old.png", left: "0%" },
+        { ph: "1", img: "1_old.png", left: "6.25%" },
+        { ph: "2", img: "2_old.png", left: "12.5%" },
+        { ph: "2.90", img: "2_90_old.png", left: "18.12%", isPka: true },
+        { ph: "3", img: "3_old.png", left: "25%" },
+        { ph: "4", img: "4_old.png", left: "31.25%" },
+        { ph: "5", img: "5_old.png", left: "37.5%" },
+        { ph: "6", img: "6_old.png", left: "43.75%" },
+        { ph: "7", img: "7_old.png", left: "50%" },
+        { ph: "8", img: "8_old.png", left: "56.25%" },
+        { ph: "9", img: "9_old.png", left: "62.5%" },
+        { ph: "10", img: "10_old.png", left: "68.75%" },
+        { ph: "11", img: "11_old.png", left: "75%" },
+        { ph: "12", img: "12_old.png", left: "81.25%" },
+        { ph: "13", img: "13_old.png", left: "87.5%" },
+        { ph: "13.80", img: "13_80_old.png", left: "93.12%", isPka: true },
+        { ph: "14", img: "14_old.png", left: "100%" }
+    ];
+
+    // Renderizar marcas del juego del ácido salicílico
+    gameData.forEach((data, index) => {
+        let span = document.createElement('span');
+        span.style.left = data.left;
+        span.innerText = data.ph;
+        if(data.isPka) span.style.color = '#e53e3e';
+        if(index === 0) span.classList.add('active');
+        
+        span.onclick = () => {
+            gameSlider.value = index;
+            updateGame(index);
+        };
+        labelsContainer.appendChild(span);
+    });
+
+    function updateGame(index) {
+        document.querySelectorAll('.ph-image').forEach(img => img.classList.remove('active'));
+        document.getElementById(`img-${index}`).classList.add('active');
+        
+        const labels = document.querySelectorAll('.slider-labels span');
+        labels.forEach(l => l.classList.remove('active'));
+        if(labels[index]) labels[index].classList.add('active');
+
+        // Configuración de capas y overlays si existiesen estructuras dinámicas extras
+        if(index >= 14) {
+            overlay.style.display = 'none';
+        } else {
+            overlay.style.display = 'none';
+        }
+    }
+
+    gameSlider.oninput = function() {
+        updateGame(parseInt(this.value));
+    };
+
+    // --- CONTROL INTERACTIVO: IBUPROFENO ---
+    function changeIbuPH(val) {
+        const numericReadout = document.getElementById('ibu-ph-numeric');
+        const interactiveImg = document.getElementById('ibu-interactive-img');
+        
+        const ph = parseFloat(val);
+        numericReadout.innerText = ph.toFixed(1);
+        
+        // Umbrales de equilibrio del Ibuprofeno (pKa = 4.4)
+        if (ph < 4.3) {
+            interactiveImg.src = "ibu_prot.png";
+        } else if (ph >= 4.3 && ph <= 4.5) {
+            interactiveImg.src = "ibu_al_pka.png";
+        } else {
+            interactiveImg.src = "ibu_deprot.png";
+        }
+    }
+
+    // --- EVALUACIONES (QUIZ) ---
     function selectQuizOption(element, isCorrect) {
-        // Limpiar selecciones previas
-        const allOptions = document.querySelectorAll('.quiz-option-card');
-        allOptions.forEach(opt => {
+        const parent = element.closest('.quiz-options-container');
+        parent.querySelectorAll('.quiz-option-card').forEach(opt => {
             opt.classList.remove('correct', 'incorrect');
         });
         
         const feedbackText = document.getElementById('quiz-feedback-text');
-        
         if (isCorrect) {
             element.classList.add('correct');
-            feedbackText.innerText = "¡Excelente! A pH 2.0 (pH < pKa), el equilibrio se desplaza completamente hacia la forma protonada neutra.";
+            feedbackText.innerText = "¡Excelente! A pH 2.0 (medio muy ácido, pH < pKa), el equilibrio se desplaza hacia la forma protonada neutra.";
             feedbackText.className = "quiz-feedback-msg msg-correct";
         } else {
             element.classList.add('incorrect');
-            feedbackText.innerText = "Incorrecto. Recuerda que si el pH (2.0) está por debajo del pKa (4.4), la especie mayoritaria debe ser la forma protonada.";
+            feedbackText.innerText = "Incorrecto. Recuerda que si el pH (2.0) está muy por debajo del pKa (4.4), el grupo funcional retiene su protón.";
             feedbackText.className = "quiz-feedback-msg msg-incorrect";
         }
     }
-</script>
-<div class="slide-container">
-    <h2 class="slide-title">Selecciona la respuesta que consideres correcta para cada ejercicio</h2>
-    <div class="content-area">
-        <div class="quiz-wrapper">
-            <p class="quiz-instruction">
-                <strong>Ejercicio b):</strong> Determine la estructura química del ibuprofeno que se encuentra en el intestino delgado (<span class="ph-highlight" style="background-color: #4299e1;">pH promedio 6.1</span>)
-            </p>
-            
-            <div class="quiz-options-container">
-                <div class="quiz-option-card" onclick="selectQuizOptionB(this, false)">
-                    <div class="option-label">Opción 1</div>
-                    <div class="option-img-box">
-                        <img src="ibu_prot.png" alt="Estructura Protonada">
-                    </div>
-                    <div class="feedback-icon"><i class="fa-solid fa-circle-xmark"></i></div>
-                </div>
 
-                <div class="quiz-option-card" onclick="selectQuizOptionB(this, false)">
-                    <div class="option-label">Opción 2</div>
-                    <div class="option-img-box">
-                        <img src="ibu_al_pka.png" alt="Estructura al pKa">
-                    </div>
-                    <div class="feedback-icon"><i class="fa-solid fa-circle-xmark"></i></div>
-                </div>
-
-                <div class="quiz-option-card" onclick="selectQuizOptionB(this, true)">
-                    <div class="option-label">Opción 3</div>
-                    <div class="option-img-box">
-                        <img src="ibu_deprot.png" alt="Estructura Desprotonada">
-                    </div>
-                    <div class="feedback-icon"><i class="fa-solid fa-circle-check"></i></div>
-                </div>
-            </div>
-            
-            <div id="quiz-feedback-text-b" class="quiz-feedback-msg">Haga clic en la estructura que considere correcta para el pH 6.1.</div>
-        </div>
-    </div>
-</div>
-
-<script>
     function selectQuizOptionB(element, isCorrect) {
-        // Obtenemos solo las opciones de ESTA diapositiva para no limpiar las de la anterior
         const parent = element.closest('.quiz-options-container');
-        const options = parent.querySelectorAll('.quiz-option-card');
-        
-        options.forEach(opt => {
+        parent.querySelectorAll('.quiz-option-card').forEach(opt => {
             opt.classList.remove('correct', 'incorrect');
         });
         
         const feedbackText = document.getElementById('quiz-feedback-text-b');
-        
         if (isCorrect) {
             element.classList.add('correct');
-            feedbackText.innerText = "¡Correcto! A pH 6.1 (pH > pKa), el grupo carboxilo cede su protón, predominando la forma desprotonada (ionizada).";
+            feedbackText.innerText = "¡Correcto! A pH 6.1 (pH > pKa), el grupo carboxilo pierde su protón en un medio más básico, predominando la forma desprotonada cargada negativamente.";
             feedbackText.className = "quiz-feedback-msg msg-correct";
         } else {
             element.classList.add('incorrect');
-            feedbackText.innerText = "Incorrecto. A pH 6.1 el medio es más básico que el pKa (4.4), por lo que el ácido debe estar mayoritariamente desprotonado.";
+            feedbackText.innerText = "Incorrecto. A pH 6.1 el entorno tiene menor concentración de H+ que el pKa (4.4), lo que obliga al ácido a desprotonarse.";
             feedbackText.className = "quiz-feedback-msg msg-incorrect";
         }
     }
-</script>
-</div> <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide-container');
-    const pageDisplay = document.getElementById('page-num');
 
-    function forceLightRendering() {
-        const root = document.documentElement;
-        const body = document.body;
-
-        root.setAttribute('data-force-light', 'true');
-        root.style.setProperty('color-scheme', 'only light', 'important');
-        root.style.setProperty('background', '#f3f0df', 'important');
-
-        body.style.setProperty('color-scheme', 'only light', 'important');
-        body.style.setProperty('background', '#f3f0df', 'important');
-        body.style.setProperty('filter', 'none', 'important');
-        body.style.setProperty('opacity', '1', 'important');
-        body.style.setProperty('mix-blend-mode', 'normal', 'important');
-
-        document.querySelectorAll('img, canvas, svg, video, .image-wrapper, .game-container, .image-stage').forEach(el => {
-            el.style.setProperty('filter', 'none', 'important');
-            el.style.setProperty('-webkit-filter', 'none', 'important');
-            el.style.setProperty('opacity', '1', 'important');
-            el.style.setProperty('mix-blend-mode', 'normal', 'important');
-            el.style.setProperty('background-blend-mode', 'normal', 'important');
-        });
-
-        document.querySelectorAll('.slide-container:not([style*="background"])').forEach(el => {
-            el.style.setProperty('background-color', '#f3f0df', 'important');
-        });
-
-        document.querySelectorAll('.image-wrapper:not([style*="transparent"]), .game-container').forEach(el => {
-            el.style.setProperty('background-color', '#ffffff', 'important');
-        });
-    }
-
-    function updatePage() {
-        slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
-        if (pageDisplay) {
-            pageDisplay.innerText = `${currentSlide + 1} / ${slides.length}`;
-        }
-        forceLightRendering();
-
-        const grafico = document.getElementById('grafico-distribucion-salicilico');
-        if (grafico && typeof Plotly !== 'undefined') {
-            setTimeout(() => Plotly.Plots.resize(grafico), 80);
-        }
-    }
-
-    function moveSlide(direction) {
-        currentSlide += direction;
-        if (currentSlide < 0) currentSlide = slides.length - 1;
-        if (currentSlide >= slides.length) currentSlide = 0;
-        updatePage();
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "ArrowRight") moveSlide(1);
-        if (e.key === "ArrowLeft") moveSlide(-1);
-    });
-
-    // Lógica interactiva del Ibuprofeno
-    function changeIbuPH(val) {
-        const ph = parseFloat(val).toFixed(1);
-        const imgElement = document.getElementById('ibu-interactive-img');
-        const readoutElement = document.getElementById('ibu-ph-numeric');
+    // --- GENERACIÓN DEL GRÁFICO DE DISTRIBUCIÓN (PLOTLY) ---
+    window.onload = function() {
+        const phValues = [];
+        const alpha0 = []; // H2A
+        const alpha1 = []; // HA-
+        const alpha2 = []; // A2-
         
-        if (readoutElement) readoutElement.textContent = ph;
+        const pKa1 = 2.90;
+        const pKa2 = 13.80;
+        const Ka1 = Math.pow(10, -pKa1);
+        const Ka2 = Math.pow(10, -pKa2);
 
-        if (imgElement) {
-            if (ph < 4.4) {
-                if (imgElement.getAttribute('src') !== 'ibu_prot.png') {
-                    imgElement.src = 'ibu_prot.png';
-                }
-            } else if (ph === '4.4') {
-                if (imgElement.getAttribute('src') !== 'ibu_al_pka.png') {
-                    imgElement.src = 'ibu_al_pka.png';
-                }
-            } else { 
-                if (imgElement.getAttribute('src') !== 'ibu_deprot.png') {
-                    imgElement.src = 'ibu_deprot.png';
-                }
-            }
-        }
-    }
-
-    // Lógica nativa del simulador de pH (Ácido Salicílico)
-    const slider = document.getElementById('ph-slider');
-    const labelsContainer = document.getElementById('ph-labels-container');
-    const overlay = document.getElementById('structure-overlay');
-    const phValores = ["0", "1", "2", "2,90", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "13,80", "14"];
-    const structureByImage = {
-        0: "estructura_mayoritaria_A.png",
-        1: "estructura_mayoritaria_A.png",
-        2: "estructura_mayoritaria_A.png",
-        3: "estructura_mayoritaria_A_y_B.png",
-        4: "estructura_mayoritaria_B.png",
-        5: "estructura_mayoritaria_B.png",
-        6: "estructura_mayoritaria_B.png",
-        7: "estructura_mayoritaria_B.png",
-        8: "estructura_mayoritaria_B.png",
-        9: "estructura_mayoritaria_B.png",
-        10: "estructura_mayoritaria_B.png",
-        11: "estructura_mayoritaria_B.png",
-        12: "estructura_mayoritaria_B.png",
-        13: "estructura_mayoritaria_B.png",
-        14: "estructura_mayoritaria_B.png",
-        15: "estructura_mayoritaria_B_y_C.png",
-        16: "estructura_mayoritaria_C.png"
-    };
-
-    if (slider && labelsContainer && overlay) {
-        phValores.forEach((v, i) => {
-            const span = document.createElement('span');
-            span.textContent = v;
-            span.id = `label-${i}`;
-            if (i === 0) span.classList.add('active');
-            span.style.left = `calc(${(i / (phValores.length - 1)) * 100}% + (${12 - (24 * i / (phValores.length - 1))}px))`;
-            span.onclick = () => {
-                slider.value = i;
-                updateGame(i);
-            };
-            labelsContainer.appendChild(span);
-        });
-
-        function updateGame(idx) {
-            document.querySelectorAll('.ph-image').forEach(img => img.classList.remove('active'));
-            document.querySelectorAll('.slider-labels span').forEach(l => l.classList.remove('active'));
-
-            const img = document.getElementById(`img-${idx}`);
-            const label = document.getElementById(`label-${idx}`);
-
-            if (img) img.classList.add('active');
-            if (label) label.classList.add('active');
-
-            if (structureByImage[idx]) {
-                overlay.src = structureByImage[idx];
-                overlay.style.display = 'block';
-
-                if (idx === 3 || idx === 15) {
-                    overlay.classList.add('overlay-large');
-                } else {
-                    overlay.classList.remove('overlay-large');
-                }
-            } else {
-                overlay.style.display = 'none';
-            }
-        }
-
-        slider.oninput = (e) => updateGame(parseInt(e.target.value));
-    }
-
-    // Gráfico interactivo: distribución ácido-base del ácido salicílico
-    (function crearGraficoDistribucionSalicilico() {
-        const contenedor = document.getElementById("grafico-distribucion-salicilico");
-        if (!contenedor || typeof Plotly === 'undefined') return;
-
-        const phArray = [];
-        for (let i = 0; i <= 14; i += 0.05) phArray.push(i);
-
-        const k1 = Math.pow(10, -2.90);
-        const k2 = Math.pow(10, -13.80);
-
-        const f_especieA = [];
-        const f_especieB = [];
-        const f_especieC = [];
-
-        phArray.forEach(ph => {
+        for (let ph = 0; ph <= 14; ph += 0.05) {
+            phValues.push(ph);
             const h = Math.pow(10, -ph);
-            const denominador = (h * h) + (k1 * h) + (k1 * k2);
-            f_especieA.push(((h * h) / denominador) * 100);
-            f_especieB.push(((k1 * h) / denominador) * 100);
-            f_especieC.push(((k1 * k2) / denominador) * 100);
-        });
+            const denominador = (h * h) + (Ka1 * h) + (Ka1 * Ka2);
+            
+            alpha0.push((h * h) / denominador);
+            alpha1.push((Ka1 * h) / denominador);
+            alpha2.push((Ka1 * Ka2) / denominador);
+        }
 
-        const datos = [
-            { x: phArray, y: f_especieA, name: 'Especie A (Protonada)', type: 'scatter', mode: 'lines', line: { color: '#005088', width: 3 } },
-            { x: phArray, y: f_especieB, name: 'Especie B (Mono-desprot.)', type: 'scatter', mode: 'lines', line: { color: '#11caa0', width: 3 } },
-            { x: phArray, y: f_especieC, name: 'Especie C (Bi-desprot.)', type: 'scatter', mode: 'lines', line: { color: '#64748b', width: 3 } }
-        ];
+        const trace0 = { x: phValues, y: alpha0, name: 'Forma Protonada (H₂A)', type: 'scatter', line: { color: '#005088', width: 3.5 } };
+        const trace1 = { x: phValues, y: alpha1, name: 'Mono-desprotonada (HA⁻)', type: 'scatter', line: { color: '#11caa0', width: 3.5 } };
+        const trace2 = { x: phValues, y: alpha2, name: 'Bi-desprotonada (A²⁻)', type: 'scatter', line: { color: '#718096', width: 3.5 } };
 
-        const configuracionLayout = {
-            title: { text: 'Distribución de Especies de Ácido Salicílico', font: { family: 'Merriweather', size: 22, color: '#005088' } },
-            xaxis: { title: 'pH', dtick: 1, range: [0, 14], gridcolor: '#e2e8f0' },
-            yaxis: { title: 'Fracción de Especie (%)', range: [0, 105], gridcolor: '#e2e8f0' },
+        const layout = {
+            title: { text: 'Curva de Especiación Química del Ácido Salicílico', font: { family: 'Merriweather, serif', size: 22, color: '#005088' } },
+            xaxis: { title: 'pH del medio', tickmode: 'linear', tick0: 0, dtick: 1, range: [0, 14], gridcolor: '#e2e8f0' },
+            yaxis: { title: 'Fracción de Especie (α)', range: [0, 1.05], gridcolor: '#e2e8f0' },
             paper_bgcolor: 'rgba(0,0,0,0)',
-            plot_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: '#ffffff',
             hovermode: 'x unified',
-            margin: { l: 60, r: 40, t: 60, b: 60 }
+            legend: { orientation: 'h', y: -0.2, x: 0.2, font: { size: 14 } },
+            margin: { l: 60, r: 30, t: 50, b: 50 }
         };
 
-        Plotly.newPlot(contenedor, datos, configuracionLayout, { displayModeBar: false });
-    })();
-
-    // Ejecuciones iniciales seguras al cargar la ventana
-    window.addEventListener("load", function() {
-        updatePage();
-        const ibuSlider = document.getElementById('ibu-ph-input');
-        if(ibuSlider) changeIbuPH(ibuSlider.value);
-    });
+        Plotly.newPlot('grafico-distribucion-salicilico', [trace0, trace1, trace2], layout, { displayModeBar: false });
+    };
 </script>
 
 </body>
