@@ -593,7 +593,69 @@
             feedbackText.className = "quiz-feedback-msg msg-correct";
         } else {
             element.classList.add('incorrect');
-            feedbackText.innerText = "Incorrecto. Recuerda que si el pH (2.0) está muy por debajo del pKa (4.4), la especie mayoritaria debe ser la forma protonada.";
+            feedbackText.innerText = "Incorrecto. Recuerda que si el pH (2.0) está por debajo del pKa (4.4), la especie mayoritaria debe ser la forma protonada.";
+            feedbackText.className = "quiz-feedback-msg msg-incorrect";
+        }
+    }
+</script>
+<div class="slide-container">
+    <h2 class="slide-title">Selecciona la respuesta que consideres correcta para cada ejercicio</h2>
+    <div class="content-area">
+        <div class="quiz-wrapper">
+            <p class="quiz-instruction">
+                <strong>Ejercicio b):</strong> Determine la estructura química del ibuprofeno que se encuentra en el intestino delgado (<span class="ph-highlight" style="background-color: #4299e1;">pH promedio 6.1</span>)
+            </p>
+            
+            <div class="quiz-options-container">
+                <div class="quiz-option-card" onclick="selectQuizOptionB(this, false)">
+                    <div class="option-label">Opción 1</div>
+                    <div class="option-img-box">
+                        <img src="ibu_prot.png" alt="Estructura Protonada">
+                    </div>
+                    <div class="feedback-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                </div>
+
+                <div class="quiz-option-card" onclick="selectQuizOptionB(this, false)">
+                    <div class="option-label">Opción 2</div>
+                    <div class="option-img-box">
+                        <img src="ibu_al_pka.png" alt="Estructura al pKa">
+                    </div>
+                    <div class="feedback-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                </div>
+
+                <div class="quiz-option-card" onclick="selectQuizOptionB(this, true)">
+                    <div class="option-label">Opción 3</div>
+                    <div class="option-img-box">
+                        <img src="ibu_deprot.png" alt="Estructura Desprotonada">
+                    </div>
+                    <div class="feedback-icon"><i class="fa-solid fa-circle-check"></i></div>
+                </div>
+            </div>
+            
+            <div id="quiz-feedback-text-b" class="quiz-feedback-msg">Haga clic en la estructura que considere correcta para el pH 6.1.</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function selectQuizOptionB(element, isCorrect) {
+        // Obtenemos solo las opciones de ESTA diapositiva para no limpiar las de la anterior
+        const parent = element.closest('.quiz-options-container');
+        const options = parent.querySelectorAll('.quiz-option-card');
+        
+        options.forEach(opt => {
+            opt.classList.remove('correct', 'incorrect');
+        });
+        
+        const feedbackText = document.getElementById('quiz-feedback-text-b');
+        
+        if (isCorrect) {
+            element.classList.add('correct');
+            feedbackText.innerText = "¡Correcto! A pH 6.1 (pH > pKa), el grupo carboxilo cede su protón, predominando la forma desprotonada (ionizada).";
+            feedbackText.className = "quiz-feedback-msg msg-correct";
+        } else {
+            element.classList.add('incorrect');
+            feedbackText.innerText = "Incorrecto. A pH 6.1 el medio es más básico que el pKa (4.4), por lo que el ácido debe estar mayoritariamente desprotonado.";
             feedbackText.className = "quiz-feedback-msg msg-incorrect";
         }
     }
