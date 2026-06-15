@@ -239,9 +239,27 @@
         .presentation-container, .slide-container, .content-area, .two-column, .image-wrapper, .game-container, .image-stage { filter: none !important; opacity: 1 !important; mix-blend-mode: normal !important; background-blend-mode: normal !important; -webkit-filter: none !important; }
         picture, img, video, canvas, svg { -webkit-filter: none !important; filter: none !important; opacity: 1 !important; mix-blend-mode: normal !important; background-blend-mode: normal !important; isolation: isolate !important; }
         html[data-darkreader-mode], html[data-darkreader-scheme], html[class*="dark"], body[class*="dark"] { color-scheme: only light !important; background: #f3f0df !important; }
-    </style>
-
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    
+    <style>
+        /* Ajuste para equilibrar los bordes y el centrado del slider de pH */
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        /* Centrado exacto del botón arrastrable */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+    
+
+
 </head>
 
 <body>
