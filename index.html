@@ -756,13 +756,13 @@
         const ph = parseFloat(val);
         numericReadout.innerText = ph.toFixed(1);
         
-        // Umbrales de equilibrio del Ibuprofeno (pKa = 4.4)
-        if (ph < 4.3) {
-            interactiveImg.src = "ibu_prot.png";
-        } else if (ph >= 4.3 && ph <= 4.5) {
-            interactiveImg.src = "ibu_al_pka.png";
+            // Umbrales de equilibrio del Ibuprofeno (pKa = 4.4)
+        if (ph < 4.4) {
+             interactiveImg.src = "ibu_prot.png";
+        } else if (ph === 4.4) {
+             interactiveImg.src = "ibu_al_pka.png";
         } else {
-            interactiveImg.src = "ibu_deprot.png";
+             interactiveImg.src = "ibu_deprot.png";
         }
     }
 
